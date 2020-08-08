@@ -1,0 +1,25 @@
+{
+  "name": "suck",
+  "version": "0.0.1",
+  "description": "scientific utility for cocktail knockout",
+  "main": "main.js",
+  "scripts": {
+    "start": "node .",
+    "dev" : "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miko007/suck.git"
+  },
+  "author": "Michael Ochmann <miko@maschinendeck.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miko007/suck/issues"
+  },
+  "homepage": "https://github.com/miko007/suck#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "serialport": "^9.0.1"
+  }
+}
