@@ -8,51 +8,58 @@ const Command      = require("./Command");
 const SerialParser = require("./SerialParser");
 
 class SUCK {
-    constructor() {
-        this.state  = new State();
-        this.parser = new SerialParser();
-        this.port   = new SerialPort("/dev/tty.usbserial-1420", {
-            baudRate : 115200,
-            autoOpen : false
-        });
-        this.socket = this.port.pipe(new ReadLine({delimiter : '\n'}));
+	constructor() {
+		this.state  = new State();
+		this.parser = new SerialParser();
+		this.port   = null;
+		this.portID = null;
+		this.socket = null;
+		//this.connect();
+	}
 
-        this.socket.on("data", data => this.handleData(data));
-        this.port.on("close", () => this.state.hasConnection = false);
-    }
+	connect() {
+		if (this.portID === null)
+			return;
 
-    connect() {
-        this.port.open(async error => {
-            if (error)
-                return;
-            this.state.hasConnection = true;
-            await this.sendCommand(Command.SET_COMMENTS, 0);
-        });  
-    }
+		console.log(this.portID);
+		this.port   = new SerialPort(this.portID, {
+			baudRate: 115200,
+			autoOpen: false,
+		});
+		this.socket = this.port.pipe(new ReadLine({ delimiter: "\n" }));
+		this.socket.on("data", (data) => this.handleData(data));
+		this.port.on("close", () => (this.state.hasConnection = false));
 
-    disconnect() {
-        this.port.close(error => {
-        });
-    }
+		this.port.open(async (error) => {
+			if (error) {
+				console.log(error);
+				return;
+			}
+			this.state.hasConnection = true;
+			await this.sendCommand(Command.SET_COMMENTS, 0);
+		});
+	}
 
-    async interfaces() {
-        return SerialPort.list();
-    }
+	disconnect() {
+		this.port.close((error) => {});
+	}
 
-    handleData(line) {
-        this.parser.parse(line);
-    }
+	async interfaces() {
+		return SerialPort.list();
+	}
 
-    async sendCommand(command, ...args) {
-        return new Promise((resolve, reject) => {
-            this.port.write(`${command} ${args.join(' ')}\n`, error => {
-                if (error)
-                    reject(error);
-                else
-                    resolve();
-            });
-        });
-    }
+	handleData(line) {
+		this.parser.parse(line);
+	}
+
+	async sendCommand(command, ...args) {
+		return new Promise((resolve, reject) => {
+			this.port.write(`${command} ${args.join(" ")}\n`, (error) => {
+				if (error) reject(error);
+				else resolve();
+			});
+		});
+	}
 }
 
 module.exports = SUCK;
