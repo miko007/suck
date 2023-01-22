@@ -1,0 +1,21 @@
+{
+	"version" : "0.0.1",
+	"name" : "Cuba Libre",
+	"description" : "1 n1cer cocktail vong karibik her",
+	"picture" : "",
+	"tags" : [
+		"cola",
+		"süß",
+		"moderat"
+	],
+	"ingredients" : [
+		{
+			"id" : "rum:white",
+			"amount" : "4"
+		},
+		{
+			"id" : "cola",
+			"amount" : "25"
+		}
+	]
+}

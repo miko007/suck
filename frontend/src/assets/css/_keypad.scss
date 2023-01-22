@@ -1,0 +1,49 @@
+.keypad {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0,0,0,0.85);
+	z-index: 2000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.display {
+		grid-column: 1 / span 3;
+		font-size: 2.5rem;
+		padding: 0.5rem;
+		min-height: 98px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		font-weight: bold;
+	}
+
+	.inner {
+		background: white;
+		width: 400px;
+		height: 400px;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		justify-content: center;
+
+		button {
+			font-size: 2rem;
+			font-weight: bold;
+			border: solid 1px #ccc;
+			border-left: 0;
+			border-bottom: 0;
+			outline: 0 !important;
+
+			&:active {
+				box-shadow: 0 0 20px rgba(0,0,0,0.5) inset;
+			}
+
+			&:not(.btn-success, .btn-warning) {
+				background: #eee;
+			}
+		}
+	}
+}

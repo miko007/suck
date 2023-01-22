@@ -1,0 +1,14 @@
+{
+	"name"        : "Jacky Cola",
+	"image"       : "dwfwqe",
+	"ingredients" : [
+		{
+			"id"     : "coca_cola",
+			"amount" : 1400
+		},
+		{
+			"id"     : "jack_daniels",
+			"amount" : 400
+		}
+	]
+}

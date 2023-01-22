@@ -1,0 +1,14 @@
+{
+	"name"        : "White Russian",
+	"image"       : "dwfwqe",
+	"ingredients" : [
+		{
+			"id"     : "rum",
+			"amount" : 1400
+		},
+		{
+			"id"     : "Minze",
+			"amount" : 400
+		}
+	]
+}

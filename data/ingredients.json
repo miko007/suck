@@ -1,0 +1,14 @@
+[
+	{
+		"id"              : "coca_cola",
+		"name"            : "Coca Cola",
+		"specific_weight" : 100,
+		"alcohol"         : 0
+	},
+	{
+		"id"              : "jack_daniels",
+		"name"            : "Jack Daniels",
+		"specific_weight" : 70,
+		"alcohol"         : 40
+	}
+]

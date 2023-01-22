@@ -1,6 +1,11 @@
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
 
+@import "./grids";
+@import "./forms";
+@import "./terminal";
+@import "./keypad";
+
 * {
 	box-sizing: border-box;
 }
@@ -13,4 +18,20 @@ img {
 body {
 	padding: 0;
 	margin: 0;
+}
+
+.wrapper {
+	max-width: 90%;
+	margin: 0 auto;
+	padding: 2rem;
+
+	&.form {
+		max-width: 60%;
+	}
+}
+
+.description {
+	font-style: italic;
+	color: #aaa;
+	padding: 1rem;
 }

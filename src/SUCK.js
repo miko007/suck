@@ -9,11 +9,12 @@ const SerialParser = require("./SerialParser");
 
 class SUCK {
 	constructor() {
-		this.state  = new State();
-		this.parser = new SerialParser();
-		this.port   = null;
-		this.portID = null;
-		this.socket = null;
+		this.state     = new State();
+		this.parser    = new SerialParser();
+		this.callbacks = [];
+		this.port      = null;
+		this.portID    = null;
+		this.socket    = null;
 		//this.connect();
 	}
 
@@ -27,7 +28,12 @@ class SUCK {
 			autoOpen: false,
 		});
 		this.socket = this.port.pipe(new ReadLine({ delimiter: "\n" }));
-		this.socket.on("data", (data) => this.handleData(data));
+		this.socket.on("data", (data) => {
+			for (const callback of this.callbacks) {
+				callback(data);
+			}
+			this.handleData(data);
+		});
 		this.port.on("close", () => (this.state.hasConnection = false));
 
 		this.port.open(async (error) => {
@@ -50,6 +56,10 @@ class SUCK {
 
 	handleData(line) {
 		this.parser.parse(line);
+	}
+
+	registerCallback(callback) {
+		this.callbacks.push(callback);
 	}
 
 	async sendCommand(command, ...args) {

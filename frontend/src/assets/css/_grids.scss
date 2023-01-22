@@ -1,0 +1,24 @@
+.grid {
+	display: grid;
+	gap: 2rem;
+
+	&.half-half {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	&.three-thirds {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	&.ten-ninety {
+		grid-template-columns: 2fr 10fr;
+	}
+
+	&.form {
+		align-items: center;
+
+		> *:nth-child(odd) {
+			text-align: right;
+		}
+	}
+}
