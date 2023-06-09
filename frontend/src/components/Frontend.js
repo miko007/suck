@@ -21,7 +21,7 @@ const Frontend = () => {
 	const [showKeyPad, setShowKeyPad] = useState(false);
 	const [isAdmin, setIsAdmin]       = useState(true);
 
-	axios.defaults.baseURL = `http://localhost:9000/api`;
+	axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL || `http://localhost:9000/api`;
 
 	useInterval(() => {
 		axios.get("/serial/connection").then(response => {
