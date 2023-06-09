@@ -27,7 +27,11 @@ const ValveSetup = ({}) => {
 	const update = (index, value) => {
 		const newData = [...valves];
 
-		newData[index] = value;
+		if (newData[index]?.indexOf(value) < 0) {
+			if (!Array.isArray(newData[index]))
+				newData[index] = [];
+			newData[index].push(value);
+		}
 
 		setCanSave(true);
 		setValves(newData);

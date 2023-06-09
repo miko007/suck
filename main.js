@@ -81,8 +81,23 @@ api.get("/recipes", async (_, response) => {
 api.get("/recipe/:id/pour", async(request, response) => {
 	const {id}   = request.params;
 	const recipe = suck.state.recipes[id];
-
+	const valves = suck.state.valves;
 	console.log("REC", recipe);
+
+	for (const ingredient of recipe.ingredients) {
+		let valveId = -1;
+		let i       = 0;
+		
+		for (const valve of valves) {
+			if (valve.indexOf(ingredient.id) >= 0)
+				valveId = i;
+			i++;
+		}
+		if (valveId === -1)
+			return;
+		suck.sendCommand(`ad ${valveId} ${ingredient.amount}`);
+	}
+
 	// 1. Prüfen ob am Hahn
 	// 2. absenden
 	// 3. wenn nicht am hahn, fehler senden

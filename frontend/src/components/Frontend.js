@@ -19,7 +19,7 @@ const Frontend = () => {
 	const [connected, setConnected]   = useState(false);
 	const [serialPort, setSerialPort] = useState("");
 	const [showKeyPad, setShowKeyPad] = useState(false);
-	const [isAdmin, setIsAdmin]       = useState(false);
+	const [isAdmin, setIsAdmin]       = useState(true);
 
 	axios.defaults.baseURL = `http://localhost:9000/api`;
 
